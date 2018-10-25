@@ -1,0 +1,30 @@
+Descrizione Role
+=========
+
+
+
+Requisiti
+------------
+
+Nessuno
+
+Variabili
+--------------
+
+Nessuna
+
+Dipendenze
+------------
+
+Nessuna
+
+Esempio di chiamata
+----------------
+
+ansible-playbook /home/playbook/bugs/6571/tasks/main.yml
+
+Informazioni Autore
+------------------
+
+Martino.Viganò
+Martino.Vigano@enghouse.com
