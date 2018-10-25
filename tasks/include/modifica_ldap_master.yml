@@ -1,0 +1,8 @@
+- name: recupero i dati di LDAP
+  include: ../roles/6520/tasks/dati_inserimento_ldap.yml
+
+# A seguito di questa chiamata ho trovato questi dati:
+# rootdn_6520
+# rootdpw_6520
+# rootdom_6520
+# roottld_6520 

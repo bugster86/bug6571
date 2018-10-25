@@ -12,3 +12,7 @@
   include: ../roles/6520/tasks/trova_master.yml
 
   # sul server ansible viene settato un fact in cui ldap_master è l'inventory_hostname del server che detiene il master LDAP
+
+- name: Modifico LDAP MASTER
+  include: include/modifica_ldap_master.yml
+  when: inventory_hostname == hostvars['localhost']['ldap_master']
