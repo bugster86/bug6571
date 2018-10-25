@@ -5,4 +5,12 @@
 # rootdn_6520
 # rootdpw_6520
 # rootdom_6520
-# roottld_6520 
+# roottld_6520
+
+- name: estraggo l'ultimo file di backup
+  shell: ls -1tr /var/ldap/backup/openldap-data*.ldif.gz | tail -1
+  changed_when: false
+  failed_when: false
+  check_mode: false
+  register: lastbackup
+  
