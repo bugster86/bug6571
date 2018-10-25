@@ -22,3 +22,12 @@
   failed_when: false
   check_mode: false
   register: siprps
+
+- name: estraggo tutte le applicazioni di tipo [0-9]@B2BUAVXML
+  shell: "zcat {{ lastbackup.stdout }} | unldif | grep -i \"^dn\: cn=[0-9]@B2BUAVXML\" | awk '{print $2}'"
+  environment:
+               PATH: "{{ ansible_env.PATH }}:/opt/reitek/ct6/bin"
+  changed_when: false
+  failed_when: false
+  check_mode: false
+  register: b2buavxmls
