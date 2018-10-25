@@ -31,3 +31,25 @@
   failed_when: false
   check_mode: false
   register: b2buavxmls
+
+- name: "Modifico la configurazione dell'applicazione  {{ item }}"
+  ldap_attr:
+   bind_dn: "{{ rootdn_6520 }}"
+   bind_pw: "{{ rootdpw_6520 }}"
+   state: present
+   server_uri: ldap://localhost/
+   name: excludeResources
+   values: SIPSBC
+   dn: "{{ item }}"
+  with_items: siprps.stdout_lines
+
+- name: "Modifico la configurazione dell'applicazione  {{ item }}"
+  ldap_attr:
+   bind_dn: "{{ rootdn_6520 }}"
+   bind_pw: "{{ rootdpw_6520 }}"
+   state: present
+   server_uri: ldap://localhost/
+   name: excludeResources
+   values: SIPSBC
+   dn: "{{ item }}"
+  with_items: b2buavxmls.stdout_lines
