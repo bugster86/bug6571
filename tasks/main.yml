@@ -7,3 +7,8 @@
   shell: mysql --user=ansible_update --password=$(cat /home/password_insert) -e "insert into ansible.bugs values ( '{{bug}}','$USER','$(date +%d-%m-%Y_%H:%M:%S)','{{inventory_hostname}}');"
   delegate_to: localhost
   changed_when: false
+
+- name: Trovo il server con LDAP master
+  include: ../roles/6520/tasks/trova_master.yml
+
+  # sul server ansible viene settato un fact in cui ldap_master è l'inventory_hostname del server che detiene il master LDAP
