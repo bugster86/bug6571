@@ -15,7 +15,7 @@
   register: lastbackup
 
 - name: estraggo tutte le applicazioni di tipo [0-9]@SIPRP
-  shell: "zcat {{ lastbackup.stdout }} | unldif | grep -i \"^dn\: cn=[0-9]@SIPRP\" | awk '{print $2}'"
+  shell: "zcat {{ lastbackup.stdout }} | unldif | grep -i '^dn: cn=[0-9]@SIPRP' | awk '{print $2}'"
   environment:
                PATH: "{{ ansible_env.PATH }}:/opt/reitek/ct6/bin"
   changed_when: false
@@ -24,7 +24,7 @@
   register: siprps
 
 - name: estraggo tutte le applicazioni di tipo [0-9]@B2BUAVXML
-  shell: "zcat {{ lastbackup.stdout }} | unldif | grep -i \"^dn\: cn=[0-9]@B2BUAVXML\" | awk '{print $2}'"
+  shell: "zcat {{ lastbackup.stdout }} | unldif | grep -i '^dn: cn=[0-9]@B2BUAVXML' | awk '{print $2}'"
   environment:
                PATH: "{{ ansible_env.PATH }}:/opt/reitek/ct6/bin"
   changed_when: false
@@ -32,24 +32,24 @@
   check_mode: false
   register: b2buavxmls
 
-- name: "Modifico la configurazione dell'applicazione  {{ item }}"
+- name: Modifico la configurazione delle applicazioni
   ldap_attr:
-   bind_dn: "{{ rootdn_6520 }}"
-   bind_pw: "{{ rootdpw_6520 }}"
+   bind_dn: "{{ rootdn_6520.stdout }}"
+   bind_pw: "{{ rootpw_6520.stdout }}"
    state: present
    server_uri: ldap://localhost/
    name: excludeResources
    values: SIPSBC
    dn: "{{ item }}"
-  with_items: siprps.stdout_lines
+  with_items: "{{ siprps.stdout_lines }}"
 
-- name: "Modifico la configurazione dell'applicazione  {{ item }}"
+- name: Modifico la configurazione delle applicazioni
   ldap_attr:
-   bind_dn: "{{ rootdn_6520 }}"
-   bind_pw: "{{ rootdpw_6520 }}"
+   bind_dn: "{{ rootdn_6520.stdout }}"
+   bind_pw: "{{ rootpw_6520.stdout }}"
    state: present
    server_uri: ldap://localhost/
    name: excludeResources
    values: SIPSBC
    dn: "{{ item }}"
-  with_items: b2buavxmls.stdout_lines
+  with_items: "{{ b2buavxmls.stdout_lines }}"
