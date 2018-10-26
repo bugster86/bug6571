@@ -1,0 +1,2 @@
+- shell: systemctl restart siprpchat* siprpin* siprpivr* siprpout* b2buavxml*
+  failed_when: false

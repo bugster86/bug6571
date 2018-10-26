@@ -1,0 +1,8 @@
+- shell: "service {{ item }} restart"
+  failed_when: false
+  with_items:
+  - 'siprpchat'
+  - 'siprpin'
+  - 'siprpivr'
+  - 'siprpout'
+  - 'b2buavxml'

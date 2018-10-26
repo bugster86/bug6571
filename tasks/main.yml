@@ -16,3 +16,8 @@
 - name: Modifico LDAP MASTER
   include: include/modifica_ldap_master.yml
   when: inventory_hostname == hostvars['localhost']['ldap_master']
+
+# da adesso in poi lavoro su tutti i server e se trovo le mie applicazioni di riferimento ne eseguo il riavvio
+
+- name: riavvio delle applicazioni necessarie
+  include: "include/riavvia_{{ ansible_distribution }}_{{ ansible_distribution_major_version }}.yml"
