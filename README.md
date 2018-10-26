@@ -16,7 +16,9 @@ Requisiti
 ------------
 
 La struttura LDAP del cliente deve essere corretta.Non ci devono essere errori in cui più macchine sono LDAP master.
-E' ammessa la situazione in cui ci sono 2 server LDAP in mirror mode
+E' ammessa la situazione in cui ci sono 2 server LDAP in mirror mode.
+
+Per poter eseguire il modulo  ldap_attr (presente in questo role), sul server di destinazione deve essere presente il pacchetto rpm python_ldap (altrimenti a runtime otteniamo un errore).
 
 Variabili
 --------------
