@@ -8,6 +8,12 @@
   delegate_to: localhost
   changed_when: false
 
+- name: Conferma la volontà di voler procedere con questo playbook
+  pause: prompt='Questo playbook riavvia dei processi Contact! Deve essere lanciato in fuori orario! Premi invio per proseguire. Premi Ctrl+c e poi "a" per interrompere'
+  run_once: true
+  when: not ansible_check_mode
+
+
 - name: Trovo il server con LDAP master
   include: ../roles/6520/tasks/trova_master.yml
 
